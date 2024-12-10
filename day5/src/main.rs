@@ -20,20 +20,19 @@ fn main() {
     }
 
     let mut new_valid_updates: Vec<Vec<i32>> = Vec::new();
-    for update in invalid_updates {
+    for mut update in invalid_updates {
         println!("checking new update");
-        for combination in update
-            .clone()
-            .into_iter()
-            .permutations(update.len())
-            .unique()
-        {
-            if check_update(&rules, &combination) {
-                new_valid_updates.push(combination.clone());
-                println!("Found a match");
+        update.sort_by(|x, y| {
+            if rules[x].contains(y) {
+                std::cmp::Ordering::Less
+            } else {
+                std::cmp::Ordering::Greater
             }
-        }
+        });
+
+        new_valid_updates.push(update);
     }
+
     let mut inv_count = 0;
     for valid_update in new_valid_updates {
         inv_count += valid_update[valid_update.len() / 2];
