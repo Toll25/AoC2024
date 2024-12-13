@@ -90,17 +90,17 @@ pub fn run() {
         vert_slices.reverse();
         peri_count += get_edges(&vert_slices);
 
-        for x in hori_slices {
-            for y in x {
-                if y {
-                    print!("#");
-                } else {
-                    print!(".");
-                }
-            }
-            println!();
-        }
-        println!();
+        //for x in hori_slices {
+        //    for y in x {
+        //        if y {
+        //            print!("#");
+        //        } else {
+        //            print!(".");
+        //        }
+        //    }
+        //    println!();
+        //}
+        //println!();
         plot_data.push((peri_count, plot.len()));
     }
 
